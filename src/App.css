@@ -29,7 +29,6 @@ body {
 .mainSection {
   padding: 1.5em;
   display: flex;
-  align-items: center;
   justify-content: center;
   flex-direction: column;
   gap: 2em;
