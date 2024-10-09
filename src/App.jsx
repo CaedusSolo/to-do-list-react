@@ -16,6 +16,13 @@ function App() {
         { id: nanoid(), task: "Email client", completed: false },
       ],
     },
+    {
+      category: "Coding",
+      tasks: [
+        { id: nanoid(), task: "Deploy project", completed: false },
+        { id: nanoid(), task: "Fork GitHub repo", completed: false },
+      ],
+    },
   ]);
 
   return (

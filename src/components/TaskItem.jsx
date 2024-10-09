@@ -1,12 +1,14 @@
-import React from 'react'
+import React from "react";
 
-function TaskItem({taskName}) {
+function TaskItem({ taskName, taskId }) {
   return (
-    <li className='taskItem'>
+    <li className="taskItem">
+      <label htmlFor={taskId} className="taskName">
         {taskName}
-        <span></span>
+      </label>
+      <input type="checkbox" name={taskId} id={taskId} />
     </li>
-  )
+  );
 }
 
-export default TaskItem
+export default TaskItem;

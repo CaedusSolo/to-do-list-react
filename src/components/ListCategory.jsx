@@ -1,48 +1,46 @@
-import React, { useContext } from "react";
-import { AppContext } from "../App";
+import React from "react";
 import TaskItem from "./TaskItem";
 
-function ListCategory({category, tasks}) {
-
-  const {listItems} = useContext(AppContext)
+function ListCategory({category, tasks, categoryNum}) {
 
   function mapTasks() {
-    return tasks.map(task => {
-      return <TaskItem 
-      taskName={task.task}
-      taskId={task.id}
-      />
-    })
+    return tasks.map((task) => {
+      return (
+        <TaskItem 
+          taskName={task.task}
+          taskId={task.id}
+        />
+      );
+    });
   }
 
   return (
-      <div className="listCategory accordion-item">
-        <h3 className="accordion-header">
-          <button
-            className="accordion-button"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#collapseOne"
-            aria-expanded="true"
-            aria-controls="collapseOne"
-          >
-            {category}
-          </button>
-        </h3>
-        <div
-          id="collapseOne"
-          className="accordion-collapse collapse show"
-          aria-labelledby="headingOne"
-          data-bs-parent="#accordionExample"
+    <div className="listCategory accordion-item">
+      <h3 className="accordion-header" id={`heading${categoryNum}`}>
+        <button
+          className="accordion-button"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target={`#collapse${categoryNum}`}
+          aria-expanded={categoryNum === 1 ? "true" : "false"} 
+          aria-controls={`collapse${categoryNum}`}
         >
-          <div className="accordion-body">
-            <ul>
-              {mapTasks()}
-            </ul>
-          </div>
+          {category}
+        </button>
+      </h3>
+      <div
+        id={`collapse${categoryNum}`}
+        className={`accordion-collapse collapse ${categoryNum === 1 ? "show" : ""}`}
+        aria-labelledby={`heading${categoryNum}`}
+        data-bs-parent="#accordionExample"
+      >
+        <div className="accordion-body">
+          <ul className="tasksList">
+            {mapTasks()}
+          </ul>
         </div>
       </div>
-
+    </div>
   );
 }
 

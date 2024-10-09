@@ -6,10 +6,11 @@ function MainSection() {
   const {listItems} = useContext(AppContext)
 
   function mapListCategoryItems() {
-    return listItems.map(listItem => {
+    return listItems.map((listItem, index) => {
       return <ListCategory 
       category={listItem.category}
       tasks={listItem.tasks}
+      categoryNum={index + 1}
       />
     })
   }
