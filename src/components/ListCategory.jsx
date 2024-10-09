@@ -1,36 +1,41 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AppContext } from "../App";
 
-function ListCategory() {
+function ListCategory({category, tasks}) {
+
+  const {listItems} = useContext(AppContext)
+
+  function mapTasks() {
+    return tasks.map(task => {
+      return <li>{task.task}</li>
+    })
+  }
+
   return (
     <div className="accordion">
       <div className="listCategory accordion-item">
         <h3 className="accordion-header">
           <button
-            class="accordion-button"
+            className="accordion-button"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#collapseOne"
             aria-expanded="true"
             aria-controls="collapseOne"
           >
-            Accordion Item #1
+            {category}
           </button>
         </h3>
         <div
           id="collapseOne"
-          class="accordion-collapse collapse show"
+          className="accordion-collapse collapse show"
           aria-labelledby="headingOne"
           data-bs-parent="#accordionExample"
         >
-          <div class="accordion-body">
-            <strong>This is the first item's accordion body.</strong> It is
-            shown by default, until the collapse plugin adds the appropriate
-            classes that we use to style each element. These classes control the
-            overall appearance, as well as the showing and hiding via CSS
-            transitions. You can modify any of this with custom CSS or
-            overriding our default variables. It's also worth noting that just
-            about any HTML can go within the <code>.accordion-body</code>,
-            though the transition does limit overflow.
+          <div className="accordion-body">
+            <ul>
+              {mapTasks()}
+            </ul>
           </div>
         </div>
       </div>
