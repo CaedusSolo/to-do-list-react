@@ -22,7 +22,7 @@ function ListCategory({category, tasks, categoryNum}) {
           type="button"
           data-bs-toggle="collapse"
           data-bs-target={`#collapse${categoryNum}`}
-          aria-expanded={categoryNum === 1 ? "true" : "false"} 
+          aria-expanded={false}
           aria-controls={`collapse${categoryNum}`}
         >
           {category}
@@ -30,7 +30,7 @@ function ListCategory({category, tasks, categoryNum}) {
       </h3>
       <div
         id={`collapse${categoryNum}`}
-        className={`accordion-collapse collapse ${categoryNum === 1 ? "show" : ""}`}
+        className={`accordion-collapse collapse`}
         aria-labelledby={`heading${categoryNum}`}
         data-bs-parent="#accordionExample"
       >

@@ -1,4 +1,4 @@
-import { useState, createContext } from "react";
+import { useState, createContext, useEffect } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import MainSection from "./components/MainSection";
@@ -8,22 +8,16 @@ import { nanoid } from "nanoid";
 export const AppContext = createContext();
 
 function App() {
-  const [listItems, setListItems] = useState([
-    {
-      category: "Work",
-      tasks: [
-        { id: nanoid(), task: "Finish report", completed: false },
-        { id: nanoid(), task: "Email client", completed: false },
-      ],
-    },
-    {
-      category: "Coding",
-      tasks: [
-        { id: nanoid(), task: "Deploy project", completed: false },
-        { id: nanoid(), task: "Fork GitHub repo", completed: false },
-      ],
-    },
-  ]);
+  const [listItems, setListItems] = useState(JSON.parse(localStorage.getItem('items')) || []);
+  const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem('items', JSON.stringify(listItems))
+  },[listItems])
+
+  const handleShow = () => setShowModal(true);
+  const handleClose = () => setShowModal(false);
+
 
   return (
     <div className="container">
@@ -32,6 +26,10 @@ function App() {
         value={{
           listItems,
           setListItems,
+          showModal,
+          setShowModal,
+          handleShow,
+          handleClose
         }}
       >
         <MainSection />
