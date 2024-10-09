@@ -16,7 +16,9 @@ function MainSection() {
 
   return (
     <section className="mainSection">
-      {mapListCategoryItems()}
+      <div className="accordion">
+        {mapListCategoryItems()}
+      </div>
     </section>
   );
 }

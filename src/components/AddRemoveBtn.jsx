@@ -8,10 +8,9 @@ function AddRemoveBtn() {
 
   return (
     <div>
-      <button type="button" className="btn btn-primary" onClick={handleShow}>
-        Launch demo modal
+      <button type="button" className="btn btn-primary addRemoveBtn" onClick={handleShow}>
+        Add Task
       </button>
-
       {/* Modal */}
       {showModal && (
         <div className="modal fade show" style={{ display: 'block' }} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

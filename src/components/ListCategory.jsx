@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { AppContext } from "../App";
+import TaskItem from "./TaskItem";
 
 function ListCategory({category, tasks}) {
 
@@ -7,12 +8,14 @@ function ListCategory({category, tasks}) {
 
   function mapTasks() {
     return tasks.map(task => {
-      return <li>{task.task}</li>
+      return <TaskItem 
+      taskName={task.task}
+      taskId={task.id}
+      />
     })
   }
 
   return (
-    <div className="accordion">
       <div className="listCategory accordion-item">
         <h3 className="accordion-header">
           <button
@@ -39,7 +42,7 @@ function ListCategory({category, tasks}) {
           </div>
         </div>
       </div>
-    </div>
+
   );
 }
 

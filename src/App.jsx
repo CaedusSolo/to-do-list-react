@@ -19,7 +19,7 @@ function App() {
   ]);
 
   return (
-    <>
+    <div className="container">
       <Navbar />
       <AppContext.Provider
         value={{
@@ -30,7 +30,7 @@ function App() {
         <MainSection />
         <AddRemoveBtn />
       </AppContext.Provider>
-    </>
+    </div>
   );
 }
 
