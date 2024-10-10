@@ -69,7 +69,7 @@ function App() {
                 if (item.category === taskCategory) {
                   return {
                     ...item,
-                    tasks: item.tasks.filter((task) => task.id !== taskId), // Remove the task after a delay
+                    tasks: item.tasks.filter((task) => task.id !== taskId), 
                   };
                 }
                 return item;

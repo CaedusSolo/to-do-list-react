@@ -11,7 +11,7 @@ function ListCategory({category, tasks, categoryNum}) {
           taskName={task.task}
           taskId={task.id}
           taskCategory={category}
-          completed={task.completed} // Pass completed state to TaskItem
+          completed={task.completed} 
         />
       );
     });
