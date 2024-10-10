@@ -18,11 +18,11 @@ function ListCategory({category, tasks, categoryNum}) {
     <div className="listCategory accordion-item">
       <h3 className="accordion-header" id={`heading${categoryNum}`}>
         <button
-          className="accordion-button"
+          className="accordion-button collapsed"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target={`#collapse${categoryNum}`}
-          aria-expanded={false}
+          aria-expanded={true}
           aria-controls={`collapse${categoryNum}`}
         >
           {category}

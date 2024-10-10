@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { AppContext } from "../App";
 import AddTaskModal from "./AddTaskModal";
 
-function AddRemoveBtn() {
+function AddTaskBtn() {
   const {showModal, handleShow} = useContext(AppContext)
   
   return (
@@ -16,4 +16,4 @@ function AddRemoveBtn() {
 };
 
 
-export default AddRemoveBtn;
+export default AddTaskBtn;

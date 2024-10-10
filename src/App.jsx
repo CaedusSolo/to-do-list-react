@@ -2,7 +2,7 @@ import { useState, createContext, useEffect } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import MainSection from "./components/MainSection";
-import AddRemoveBtn from "./components/AddRemoveBtn";
+import AddTaskBtn from "./components/AddTaskBtn";
 
 
 export const AppContext = createContext();
@@ -51,7 +51,7 @@ function App() {
         }}
       >
         <MainSection />
-        <AddRemoveBtn />
+        <AddTaskBtn />
       </AppContext.Provider>
     </div>
   );
