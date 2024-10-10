@@ -67,3 +67,21 @@ body {
 .taskName {
   margin-left: -30px;
 }
+
+.categorySelection,
+.taskCreation {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  width: 70%;
+}
+
+.taskCreation > input {
+  text-indent: 5px;
+}

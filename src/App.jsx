@@ -3,7 +3,7 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import MainSection from "./components/MainSection";
 import AddRemoveBtn from "./components/AddRemoveBtn";
-import { nanoid } from "nanoid";
+
 
 export const AppContext = createContext();
 
@@ -13,11 +13,28 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem('items', JSON.stringify(listItems))
+    setShowModal(false)
   },[listItems])
 
   const handleShow = () => setShowModal(true);
   const handleClose = () => setShowModal(false);
 
+
+  function addTask(categoryName, newTask) {
+    setListItems(prevItems => {
+      return prevItems.map(item => {
+        if (item.category === categoryName) {
+          return {
+            ...item,
+            tasks: [...item.tasks, newTask]
+          }
+        }
+        else {
+          return item
+        }
+      })
+    })
+  }
 
   return (
     <div className="container">
@@ -29,7 +46,8 @@ function App() {
           showModal,
           setShowModal,
           handleShow,
-          handleClose
+          handleClose,
+          addTask
         }}
       >
         <MainSection />
