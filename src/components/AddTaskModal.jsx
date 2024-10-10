@@ -3,7 +3,7 @@ import { AppContext } from "../App";
 import { nanoid } from "nanoid";
 
 function AddTaskModal() {
-  const { handleClose, listItems, addTask } = useContext(AppContext);
+  const { handleCloseAddTaskModal, listItems, addTask } = useContext(AppContext);
 
   const [categorySelected, setCategorySelected] = useState(listItems[0].category);
   const [newTask, setNewTask] = useState('');  // Initialize as an empty string
@@ -74,7 +74,7 @@ function AddTaskModal() {
             <button
               type="button"
               className="btn btn-danger"
-              onClick={handleClose}
+              onClick={handleCloseAddTaskModal}
             >
               Close
             </button>

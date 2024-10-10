@@ -3,14 +3,14 @@ import { AppContext } from "../App";
 import AddTaskModal from "./AddTaskModal";
 
 function AddTaskBtn() {
-  const {showModal, handleShow} = useContext(AppContext)
+  const {showAddTaskModal, handleShowAddTaskModal} = useContext(AppContext)
   
   return (
     <div>
-      <button type="button" className="btn btn-primary addRemoveBtn" onClick={handleShow}>
-        Add Task
+      <button type="button" className="btn addTaskBtn" onClick={handleShowAddTaskModal}>
+        Add New Task
       </button>
-      {showModal && <AddTaskModal />}
+      {showAddTaskModal && <AddTaskModal />}
     </div>
   );
 };

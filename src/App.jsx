@@ -3,36 +3,53 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import MainSection from "./components/MainSection";
 import AddTaskBtn from "./components/AddTaskBtn";
-
+import AddCategoryBtn from "./components/AddCategoryBtn";
 
 export const AppContext = createContext();
 
 function App() {
-  const [listItems, setListItems] = useState(JSON.parse(localStorage.getItem('items')) || []);
-  const [showModal, setShowModal] = useState(false);
+  const [listItems, setListItems] = useState(
+    JSON.parse(localStorage.getItem("items")) || []
+  );
+  const [showAddTaskModal, setShowAddTaskModal] = useState(false);
+  const [showAddCategoryModal, setShowAddCategoryModal] = useState(false);
 
   useEffect(() => {
-    localStorage.setItem('items', JSON.stringify(listItems))
-    setShowModal(false)
-  },[listItems])
+    localStorage.setItem("items", JSON.stringify(listItems));
+    setShowAddTaskModal(false);
+    setShowAddCategoryModal(false)
+  }, [listItems]);
 
-  const handleShow = () => setShowModal(true);
-  const handleClose = () => setShowModal(false);
 
+  const handleShowAddTaskModal = () => setShowAddTaskModal(true);
+  const handleCloseAddTaskModal = () => setShowAddTaskModal(false);
+  const handleShowAddCategoryModal = () => setShowAddCategoryModal(true)
+  const handleCloseAddCategoryModal = () => setShowAddCategoryModal(false)
 
   function addTask(categoryName, newTask) {
-    setListItems(prevItems => {
-      return prevItems.map(item => {
+    setListItems((prevItems) => {
+      return prevItems.map((item) => {
         if (item.category === categoryName) {
           return {
             ...item,
-            tasks: [...item.tasks, newTask]
-          }
+            tasks: [...item.tasks, newTask],
+          };
+        } else {
+          return item;
         }
-        else {
-          return item
+      });
+    });
+  }
+
+  function addCategory(newCategory) {
+    setListItems((prevItems) => {
+      return [
+        ...prevItems, 
+        {
+          category: newCategory,
+          tasks: []
         }
-      })
+      ]
     })
   }
 
@@ -43,15 +60,22 @@ function App() {
         value={{
           listItems,
           setListItems,
-          showModal,
-          setShowModal,
-          handleShow,
-          handleClose,
-          addTask
+          showAddTaskModal,
+          setShowAddTaskModal,
+          handleShowAddTaskModal,
+          handleCloseAddTaskModal,
+          addTask,
+          showAddCategoryModal,
+          handleShowAddCategoryModal,
+          handleCloseAddCategoryModal,
+          addCategory
         }}
       >
         <MainSection />
-        <AddTaskBtn />
+        <div className="buttonsContainer">
+          <AddTaskBtn />
+          <AddCategoryBtn />
+        </div>
       </AppContext.Provider>
     </div>
   );
