@@ -6,13 +6,17 @@ function ListCategory({category, tasks, categoryNum}) {
   function mapTasks() {
     return tasks.map((task) => {
       return (
-        <TaskItem 
+        <TaskItem
+          key={task.id}
           taskName={task.task}
           taskId={task.id}
+          taskCategory={category}
+          completed={task.completed} // Pass completed state to TaskItem
         />
       );
     });
   }
+  
 
   return (
     <div className="listCategory accordion-item">

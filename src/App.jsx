@@ -17,14 +17,13 @@ function App() {
   useEffect(() => {
     localStorage.setItem("items", JSON.stringify(listItems));
     setShowAddTaskModal(false);
-    setShowAddCategoryModal(false)
+    setShowAddCategoryModal(false);
   }, [listItems]);
-
 
   const handleShowAddTaskModal = () => setShowAddTaskModal(true);
   const handleCloseAddTaskModal = () => setShowAddTaskModal(false);
-  const handleShowAddCategoryModal = () => setShowAddCategoryModal(true)
-  const handleCloseAddCategoryModal = () => setShowAddCategoryModal(false)
+  const handleShowAddCategoryModal = () => setShowAddCategoryModal(true);
+  const handleCloseAddCategoryModal = () => setShowAddCategoryModal(false);
 
   function addTask(categoryName, newTask) {
     setListItems((prevItems) => {
@@ -44,13 +43,44 @@ function App() {
   function addCategory(newCategory) {
     setListItems((prevItems) => {
       return [
-        ...prevItems, 
+        ...prevItems,
         {
           category: newCategory,
-          tasks: []
+          tasks: [],
+        },
+      ];
+    });
+  }
+
+  function setTaskAsComplete(taskId, taskCategory) {
+    setListItems((prevItems) => {
+      return prevItems.map((item) => {
+        if (item.category === taskCategory) {
+          const updatedTasks = item.tasks.map((task) => {
+            if (task.id === taskId) {
+              return { ...task, completed: !task.completed }; 
+            }
+            return task;
+          });
+
+          setTimeout(() => {
+            setListItems((newItems) => {
+              return newItems.map((item) => {
+                if (item.category === taskCategory) {
+                  return {
+                    ...item,
+                    tasks: item.tasks.filter((task) => task.id !== taskId), // Remove the task after a delay
+                  };
+                }
+                return item;
+              });
+            });
+          }, 1000);
+          return { ...item, tasks: updatedTasks };
         }
-      ]
-    })
+        return item;
+      });
+    });
   }
 
   return (
@@ -68,7 +98,8 @@ function App() {
           showAddCategoryModal,
           handleShowAddCategoryModal,
           handleCloseAddCategoryModal,
-          addCategory
+          addCategory,
+          setTaskAsComplete,
         }}
       >
         <MainSection />
